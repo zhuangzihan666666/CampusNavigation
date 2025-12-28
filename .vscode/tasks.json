@@ -12,7 +12,6 @@
                 "main.cpp",
                 "place.cpp",
                 "graph.cpp",
-                "tree.cpp",
                 "-o",
                 "output/main.exe"
             ],

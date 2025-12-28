@@ -249,7 +249,7 @@ void calculate(PlaceManager &pm, Graph &g)
     g.loadFromFile();
 
     string start, end;
-    cout << "Start:" << endl;
+    cout << "请输入起点地点名: " << endl;
     cin >> start;
     int s = pm.decidePlace(start);
     if (s == -1)
@@ -263,7 +263,7 @@ void calculate(PlaceManager &pm, Graph &g)
         cout << "已匹配到: " << start << endl;
     }
 
-    cout << "End:" << endl;
+    cout << "请输入终点地点名: " << endl;
     cin >> end;
     int e = pm.decidePlace(end);
     if (e == -1)
@@ -297,5 +297,6 @@ void calculate(PlaceManager &pm, Graph &g)
             ok = true;
             cout << "[" << i << "]" << pm.findById(i)->name;
         }
+        cout<<'\n';
     }
 }

@@ -25,6 +25,7 @@ void Graph::resizeTo(int newN)
                 return e.first > newN;
             }), edges.end());
         }
+        this->saveToFile();
     }
 
     n = newN;
