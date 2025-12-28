@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CampusNavigation",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/output/main.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",   // ✅ 工作目录改为项目根
+            "environment": [],
+            "externalConsole": false
+        }
+    ]
+}
