@@ -88,12 +88,13 @@ bool PlaceManager::deletePlace(int id) {
     int idx = idIndex[id];
     int lastIdx = places.size() - 1;
 
-    // 用最后一个元素覆盖被删除元素
     places[idx] = places[lastIdx];
     idIndex[places[idx].id] = idx;
 
     places.pop_back();
     idIndex.erase(id);
+
+    this->saveToFile();
 
     return true;
 }
@@ -108,6 +109,8 @@ bool PlaceManager::updatePlace(int id, const std::string &newName)
     }
 
     p->name = newName;
+    this->saveToFile();
+
     return true;
 }
 

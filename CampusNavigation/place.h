@@ -15,9 +15,11 @@ class PlaceManager {
 private:
     std::vector<Place> places;
     std::unordered_map<int, int> idIndex;
-    std::string filename;
 
 public:
+
+    std::string filename;
+    
     // 
     PlaceManager(const std::string& filename = "");
 

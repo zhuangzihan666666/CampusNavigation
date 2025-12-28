@@ -17,6 +17,9 @@ public:
     // 添加道路
     void addEdge(int u, int v, int w, bool needToSave);
 
+    // 调整顶点数量（会同步调整邻接表大小）
+    void resizeTo(int newN);
+
     // 打印全部道路
     void printGraph() const;
 

@@ -4,11 +4,30 @@
 #include <queue>
 #include <climits>
 #include <algorithm>
+#include "place.h"
 
 using namespace std;
 
 Graph::Graph(int n, const std::string& file) : n(n), filename(file)
 {
+    adj.resize(n + 1);
+}
+
+void Graph::resizeTo(int newN)
+{
+    if (newN <= 0 || newN == n) return;
+
+    // 如果缩小，需要先剔除越界的边
+    if (newN < n) {
+        for (int u = 1; u <= newN; ++u) {
+            auto &edges = adj[u];
+            edges.erase(std::remove_if(edges.begin(), edges.end(), [newN](const std::pair<int,int>& e){
+                return e.first > newN;
+            }), edges.end());
+        }
+    }
+
+    n = newN;
     adj.resize(n + 1);
 }
 
@@ -119,6 +138,14 @@ bool Graph::loadFromFile()
 
 void Graph::addEdge(int u, int v, int w, bool needToSave)
 {
+    if (u <= 0 || v <= 0 || u > n || v > n) {
+        cout << "【错误】顶点超出范围，无法添加道路\n";
+        return;
+    }
+    if (w <= 0) {
+        cout << "【错误】路程长度必须为正\n";
+        return;
+    }
     adj[u].push_back({v, w});
     adj[v].push_back({u, w});
     if(needToSave)this->saveToFile();

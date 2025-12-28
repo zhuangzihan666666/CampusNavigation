@@ -4,8 +4,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <direct.h>  // Windows mkdir
-#include <sys/stat.h> // Linux mkdir
+#include <direct.h>
+#include <sys/stat.h>
 #include <algorithm>
 
 // 获取源文件所在目录（即项目根目录）
