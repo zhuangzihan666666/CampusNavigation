@@ -15,7 +15,7 @@ public:
     Graph(int n = 0, const std::string& file = "");
 
     // 添加道路
-    void addEdge(int u, int v, int w);
+    void addEdge(int u, int v, int w, bool needToSave);
 
     // 打印全部道路
     void printGraph() const;

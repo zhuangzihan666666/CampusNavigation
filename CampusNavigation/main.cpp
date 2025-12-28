@@ -27,10 +27,18 @@ int main()
     Graph g(pm.size(),roadsFile);
     g.loadFromFile(roadsFile);
 
-    addRoad(g);
-    // calculate(pm,g,placesFile,roadsFile);
+    // addRoad(g);
+    calculate(pm,g,placesFile,roadsFile);
     // addPlace(pm,placesFile);
     // calculate(pm,g,placesFile,roadsFile);
+    // while(1){
+
+    //     int choice;
+    //     cout<<"";
+    //     cin>>choice;
+        
+
+    // }
 
     return 0;
 }
@@ -96,6 +104,6 @@ void addRoad(Graph &g){
     cout<<"请输入起点、终点、路程长度: ";
     int u,v,w;
     cin>>u>>v>>w;
-    g.addEdge(u,v,w);
+    g.addEdge(u,v,w,true);
 }
 

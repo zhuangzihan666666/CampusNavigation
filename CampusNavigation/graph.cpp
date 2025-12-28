@@ -12,13 +12,6 @@ Graph::Graph(int n, const std::string& file) : n(n), filename(file)
     adj.resize(n + 1);
 }
 
-void Graph::addEdge(int u, int v, int w)
-{
-    adj[u].push_back({v, w});
-    adj[v].push_back({u, w});
-    this->saveToFile(filename);
-}
-
 void Graph::printGraph() const
 {
     for (int u = 1; u <= n; ++u)
@@ -116,10 +109,17 @@ bool Graph::loadFromFile(const std::string &filename)
                       << u << " " << v << " " << w << std::endl;
             continue;
         }
-        addEdge(u, v, w);
+        addEdge(u, v, w, false);
     }
 
     in.close();
 
     return true;
+}
+
+void Graph::addEdge(int u, int v, int w, bool needToSave)
+{
+    adj[u].push_back({v, w});
+    adj[v].push_back({u, w});
+    if(needToSave)this->saveToFile(filename);
 }
