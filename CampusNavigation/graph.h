@@ -24,10 +24,10 @@ public:
     std::pair<int,std::vector<int>> dijkstra(int start, int end) const;
 
     // 从文件中加载路径
-    bool loadFromFile(const std::string& filename);
+    bool loadFromFile();
 
     // 保存路径至文件
-    bool saveToFile(const std::string &filename) const;
+    bool saveToFile() const;
 };
 
 #endif

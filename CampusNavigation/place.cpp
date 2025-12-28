@@ -10,8 +10,14 @@ using std::ofstream;
 using std::string;
 using std::vector;
 
+PlaceManager::PlaceManager(const std::string &filename) : filename(filename)
+{
+
+}
+
+
 // 从文件加载地点数据
-bool PlaceManager::loadFromFile(const std::string &filename)
+bool PlaceManager::loadFromFile()
 {
     ifstream in(filename);
     if (!in.is_open())
@@ -24,7 +30,7 @@ bool PlaceManager::loadFromFile(const std::string &filename)
     idIndex.clear();
 
     Place p;
-    while (in >> p.id >> p.name >> p.type)
+    while (in >> p.id >> p.name)
     {
         if (idIndex.count(p.id))
         {
@@ -40,7 +46,7 @@ bool PlaceManager::loadFromFile(const std::string &filename)
 }
 
 // 保存到文件
-bool PlaceManager::saveToFile(const std::string &filename) const
+bool PlaceManager::saveToFile() const
 {
     ofstream out(filename);
     if (!out.is_open()) {
@@ -50,8 +56,7 @@ bool PlaceManager::saveToFile(const std::string &filename) const
 
     for (const auto& p : places) {
         out << p.id << " "
-             << p.name << " "
-             << p.type << endl;
+             << p.name << endl;
     }
 
     out.close();
@@ -59,17 +64,17 @@ bool PlaceManager::saveToFile(const std::string &filename) const
 }
 
 // 添加新地点
-bool PlaceManager::addPlace(int id, const std::string &name, const std::string &type, const string &filename)
+bool PlaceManager::addPlace(int id, const std::string &name)
 {
     if (idIndex.count(id)) {
         cout << "【错误】地点编号已存在：" << id << endl;
         return false;
     }
 
-    Place p{ id, name, type };
+    Place p{ id, name};
     idIndex[id] = places.size();
     places.push_back(p);
-    this->saveToFile(filename);
+    this->saveToFile();
     return true;
 }
 
@@ -94,7 +99,7 @@ bool PlaceManager::deletePlace(int id) {
 }
 
 // 修改地点信息
-bool PlaceManager::updatePlace(int id, const std::string &newName, const std::string &newType)
+bool PlaceManager::updatePlace(int id, const std::string &newName)
 {  
     Place* p = findById(id);
     if (!p) {
@@ -103,7 +108,6 @@ bool PlaceManager::updatePlace(int id, const std::string &newName, const std::st
     }
 
     p->name = newName;
-    p->type = newType;
     return true;
 }
 
@@ -127,11 +131,10 @@ vector<Place*> PlaceManager::findByName(const string& keyword) {
 
 // 打印所有地点
 void PlaceManager::printAll() const {
-    cout << "ID\t名称\t类型\n";
+    cout << "ID\t名称\n";
     for (const auto& p : places) {
         cout << p.id << "\t"
-             << p.name << "\t"
-             << p.type << endl;
+             << p.name << endl;
     }
 }
 

@@ -75,7 +75,7 @@ pair<int,vector<int>> Graph::dijkstra(int start, int end) const
 }
 
 
-bool Graph::saveToFile(const std::string &filename) const
+bool Graph::saveToFile() const
 {
     ofstream out(filename);
     if(!out.is_open()){
@@ -94,7 +94,7 @@ bool Graph::saveToFile(const std::string &filename) const
     return true;
 }
 
-bool Graph::loadFromFile(const std::string &filename)
+bool Graph::loadFromFile()
 {
     std::ifstream in(filename);
     if(!in.is_open()){
@@ -121,5 +121,5 @@ void Graph::addEdge(int u, int v, int w, bool needToSave)
 {
     adj[u].push_back({v, w});
     adj[v].push_back({u, w});
-    if(needToSave)this->saveToFile(filename);
+    if(needToSave)this->saveToFile();
 }

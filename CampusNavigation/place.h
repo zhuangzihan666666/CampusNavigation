@@ -8,7 +8,6 @@
 struct Place {
     int id;
     std::string name;
-    std::string type;
 };
 
 class PlaceManager {
@@ -16,22 +15,26 @@ class PlaceManager {
 private:
     std::vector<Place> places;
     std::unordered_map<int, int> idIndex;
+    std::string filename;
 
 public:
+    // 
+    PlaceManager(const std::string& filename = "");
+
     // 从文件加载地点数据
-    bool loadFromFile(const std::string& filename);
+    bool loadFromFile();
 
     // 保存到文件
-    bool saveToFile(const std::string& filename) const;
+    bool saveToFile() const;
 
     // 添加地点
-    bool addPlace(int id, const std::string& name, const std::string& type, const std::string &filename);
+    bool addPlace(int id, const std::string& name);
 
     // 删除地点
     bool deletePlace(int id);
 
     // 修改地点
-    bool updatePlace(int id,const std::string& newName,const std::string& newType);
+    bool updatePlace(int id,const std::string& newName);
     
     // 按 id 查找（返回指针，便于修改）
     Place* findById(int id);
