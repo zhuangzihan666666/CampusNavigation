@@ -43,6 +43,7 @@ int main()
 void menu(bool &ok,PlaceManager &pm, Graph &g){
     int choice;
     cout << "1. 显示所有地点\n2. 查询地点信息\n3. 添加地点\n4. 删除地点\n5. 修改地点\n6. 添加道路\n7. 查询最短路径\n0. 退出\n";
+    cout << "\n请输入选项：\n" ;
     cin >> choice;
     switch (choice)
     {
